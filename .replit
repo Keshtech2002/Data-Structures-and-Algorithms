@@ -1,4 +1,5 @@
 run = "run"
+modules = ["python-3.10"]
 [nix]
 channel = "stable-23_11"
 
