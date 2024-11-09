@@ -6,5 +6,5 @@ def accessElement(array, index):
     else:
         print(array[index])
 
-arr1 = array('i', [1, 2, 3, 4, 5, 6])
+
 accessElement(arr1, 3) #4
