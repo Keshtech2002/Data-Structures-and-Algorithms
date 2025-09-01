@@ -14,20 +14,22 @@ def isAnagram(s: str, t: str) -> bool:
 # Second solution, two hashmaps with O(s+t) for time and space complexity
 # While the time complexity is ok, the space complexity can be improved
 def isAnagram_2(s: str, t: str) -> bool:
-    if len(s) != len(t):
+    if len(s) != len(t): # If they are not the same length they are not even anagrams of each other
         return False
 
-    countS, countT = {}, {}
+    countS, countT = {}, {} # A hashmap for both strings
 
-    for i in range(len(s)):
-        countS[s[i]] = countS.get(s[i], 0) + 1
-        countT[t[i]] = countT.get(t[i], 0) + 1
+    for i in range(len(s)): # This iterates through the two strings together simultaneously and 
+        countS[s[i]] = countS.get(s[i], 0) + 1 # attaches each letter to its number of counts e.g {s:1, p:1, g:1}
+        countT[t[i]] = countT.get(t[i], 0) + 1 # default for every letter is {_:0} it checks if the letter is in the dictionary first before 
+        # adding it with the get() method, if it is there it will increment the count
 
-    for char in countS:
-        if countS[char] != countT.get(char, 0):
+    for char in countS: #iterate through countS map now
+        if countS[char] != countT.get(char, 0): # Checks each character and the value of its count in S and checks if it is present in t with the different value
+            # then this triggers false immediately
             return False
     
-    return True
+    return True # if all are equal
 
 
 def isAnagram_3(s: str, t: str) -> bool:

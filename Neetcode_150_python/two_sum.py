@@ -10,7 +10,7 @@ def twoSum(nums: list[int], target: int) -> list[int]:
 # and check if difference exists in the hash map as we iterate through the array, 
 # else store the current element in the hashmap with its index and continue. We use a hashmap for O(1) lookups.
 def twoSum_2(nums: list[int], target: int) -> list[int]:
-    holder_map = {} # stores elments that has been iterated against the index {value: index}
+    holder_map = {} # stores elments that has been iterated against the index {number: index}
     for index, number in enumerate(nums):
         difference = target - number
         if difference in holder_map.keys():

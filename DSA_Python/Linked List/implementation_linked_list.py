@@ -25,6 +25,13 @@ class LinkedList:
 
         print(linked_list_string)
 
+    def insert_at_end(self, data):
+        if self.head is None:
+            self.head = Node(data, None)
+            return
+        
+        itr = self.headwhile i
+
         
 
 if __name__ == "__main__":
