@@ -65,6 +65,63 @@ def longestConsecutive(nums: list[int]) -> int:
     return result
 
 
+# Optimized Solution
+def longestConsecutive_2(nums: list[int]) -> int:
+    """
+    Problem:
+      Given an unsorted list of integers, return the length of the longest 
+      consecutive elements sequence (longest run of numbers without gaps).
+      
+    Example:
+      nums = [100, 4, 200, 1, 3, 2]
+      The longest consecutive sequence is [1, 2, 3, 4]
+      Answer = 4
+
+    Approach (O(n) HashSet-based):
+      1. Insert all numbers into a set (for O(1) average lookup).
+      2. Iterate through each number in the set.
+         - If (num - 1) is NOT in the set, then `num` is the *start* of a new sequence.
+         - Expand forward (num + 1, num + 2, …) until the sequence ends.
+         - Count its length.
+         - Update the maximum length found.
+      3. Return the longest length.
+
+    Why it works:
+      - We only expand sequences from their *starting points* (numbers without a predecessor).
+      - Each number is visited once in expansion → total O(n) complexity.
+
+    Time Complexity: O(n) on average (HashSet lookups).
+    Space Complexity: O(n) for storing the set.
+    """
+
+    # Store all numbers in a set for fast O(1) membership checks
+    numSet = set(nums)
+
+    # Initialize the longest streak length
+    longest = 0
+
+    # Iterate through each unique number in the set
+    for num in numSet:
+        # Only start a sequence if `num` is the *beginning*
+        # i.e., `num - 1` is not in the set → ensures we don't recount from the middle
+        if (num - 1) not in numSet:
+
+            # Start of a new sequence
+            length = 1   # current sequence length
+
+            # Expand forward while the next consecutive number exists in the set
+            # Example: if num = 1 and 2,3,4 are in the set → keep going
+            while (num + length) in numSet:
+                length += 1
+
+            # Update the longest streak found so far
+            longest = max(longest, length)
+
+    # Step 3: Return the maximum streak length
+    return longest
+
+
 
 if __name__ == "__main__":
     print(longestConsecutive([2,20,4,10,3,4,5]))
+    print(longestConsecutive_2([2,20,4,10,3,4,5]))
